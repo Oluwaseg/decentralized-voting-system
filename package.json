@@ -1,0 +1,36 @@
+{
+  "name": "voting-system",
+  "version": "1.0.0",
+  "description": "Decentralized voting system using Web3 technologies",
+  "main": "index.js",
+  "scripts": {
+    "compile": "truffle compile",
+    "migrate": "truffle migrate",
+    "migrate:reset": "truffle migrate --reset",
+    "migrate:development": "truffle migrate --network development",
+    "migrate:sepolia": "truffle migrate --network sepolia",
+    "console": "truffle console",
+    "test": "truffle test",
+    "deploy": "node scripts/deploy.js",
+    "interact": "node scripts/interact.js",
+    "dev": "cd frontend && npm start"
+  },
+  "keywords": [
+    "blockchain",
+    "ethereum",
+    "voting",
+    "web3",
+    "smart-contracts",
+    "react"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "web3": "^4.2.2",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "truffle": "^5.11.5",
+    "@truffle/hdwallet-provider": "^2.1.15"
+  }
+}
