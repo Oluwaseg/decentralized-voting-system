@@ -1,0 +1,32 @@
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#00ff88;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </radialGradient>
+    <linearGradient id="voteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ffff" />
+      <stop offset="100%" style="stop-color:#00ff88" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="16" cy="16" r="16" fill="url(#bgGrad)"/>
+  
+  <!-- Outer Ring -->
+  <circle cx="16" cy="16" r="13" fill="none" stroke="#00ff88" stroke-width="1" opacity="0.6"/>
+  
+  <!-- Voting Box -->
+  <rect x="10" y="10" width="12" height="12" rx="2" fill="none" stroke="url(#voteGrad)" stroke-width="1.5"/>
+  
+  <!-- Checkmark -->
+  <path d="M 13 16 L 15 18 L 20 13" stroke="#00ffff" stroke-width="2" fill="none" stroke-linecap="round"/>
+  
+  <!-- Corner Brackets -->
+  <g stroke="#00ffff" stroke-width="1" fill="none" opacity="0.8">
+    <path d="M 4 6 L 4 4 L 6 4"/>
+    <path d="M 26 4 L 28 4 L 28 6"/>
+    <path d="M 6 28 L 4 28 L 4 26"/>
+    <path d="M 28 26 L 28 28 L 26 28"/>
+  </g>
+</svg>

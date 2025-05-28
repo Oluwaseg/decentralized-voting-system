@@ -1,6 +1,11 @@
 import { Web3 } from 'web3';
+import {
+  getContractAddress,
+  getNetworkName,
+  isSupportedNetwork,
+  NETWORK_NAMES,
+} from '../config/contracts';
 
-// Contract ABI - This should match your deployed contract
 const VOTING_ABI = [
   {
     inputs: [
@@ -164,8 +169,7 @@ class Web3Service {
         const accounts = await this.web3.eth.getAccounts();
         this.account = accounts[0];
         return true;
-      } catch (error) {
-        console.error('User denied account access', error);
+      } catch {
         return false;
       }
     } else if (window.web3) {
@@ -174,7 +178,6 @@ class Web3Service {
       this.account = accounts[0];
       return true;
     } else {
-      console.log('Non-Ethereum browser detected. Consider trying MetaMask!');
       return false;
     }
   }
@@ -190,28 +193,15 @@ class Web3Service {
     if (!this.web3) {
       throw new Error('Web3 not initialized');
     }
-    console.log('Initializing contract with address:', address);
-    console.log('Web3 instance:', this.web3);
     this.contract = new this.web3.eth.Contract(VOTING_ABI, address);
     this.contractAddress = address;
-    console.log('Contract initialized:', this.contract);
   }
 
   async getAllCandidates() {
     if (!this.contract) {
-      console.error('Contract not initialized. Contract:', this.contract);
-      console.error('Contract address:', this.contractAddress);
       throw new Error('Contract not initialized');
     }
-    console.log('Calling getAllCandidates on contract:', this.contractAddress);
-    try {
-      const result = await this.contract.methods.getAllCandidates().call();
-      console.log('getAllCandidates result:', result);
-      return result;
-    } catch (error) {
-      console.error('Error calling getAllCandidates:', error);
-      throw error;
-    }
+    return await this.contract.methods.getAllCandidates().call();
   }
 
   async vote(candidateId) {
@@ -250,6 +240,49 @@ class Web3Service {
 
   isConnected() {
     return this.web3 && this.account;
+  }
+
+  async getChainId() {
+    if (!this.web3) {
+      throw new Error('Web3 not initialized');
+    }
+    return await this.web3.eth.getChainId();
+  }
+
+  async getAccounts() {
+    if (!this.web3) {
+      throw new Error('Web3 not initialized');
+    }
+    return await this.web3.eth.getAccounts();
+  }
+
+  async connectWallet() {
+    return await this.initWeb3();
+  }
+
+  async autoDetectAndInitContract() {
+    if (!this.web3) {
+      throw new Error('Web3 not initialized');
+    }
+
+    const chainId = await this.getChainId();
+
+    if (!isSupportedNetwork(chainId)) {
+      throw new Error(
+        `Unsupported network: ${getNetworkName(
+          chainId
+        )}. Supported networks: ${Object.values(NETWORK_NAMES).join(', ')}`
+      );
+    }
+
+    const contractAddress = getContractAddress(chainId);
+
+    this.initContract(contractAddress);
+    return {
+      chainId,
+      networkName: getNetworkName(chainId),
+      contractAddress,
+    };
   }
 }
 

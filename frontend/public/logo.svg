@@ -1,0 +1,121 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle with Gradient -->
+  <defs>
+    <radialGradient id="bgGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#00ff88;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1" />
+    </radialGradient>
+    <linearGradient id="chainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ff88" />
+      <stop offset="50%" style="stop-color:#00ffff" />
+      <stop offset="100%" style="stop-color:#00ff88" />
+    </linearGradient>
+    <linearGradient id="voteGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00ffff" />
+      <stop offset="100%" style="stop-color:#00ff88" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <circle cx="256" cy="256" r="256" fill="url(#bgGradient)"/>
+  
+  <!-- Outer Ring - Blockchain Network -->
+  <circle cx="256" cy="256" r="220" fill="none" stroke="url(#chainGradient)" stroke-width="3" opacity="0.6" stroke-dasharray="10,5">
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="0 256 256" to="360 256 256" dur="20s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Middle Ring -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#00ff88" stroke-width="2" opacity="0.4" stroke-dasharray="5,10">
+    <animateTransform attributeName="transform" attributeType="XML" type="rotate" from="360 256 256" to="0 256 256" dur="15s" repeatCount="indefinite"/>
+  </circle>
+  
+  <!-- Blockchain Nodes -->
+  <g filter="url(#glow)">
+    <!-- Node 1 -->
+    <circle cx="256" cy="136" r="8" fill="#00ff88">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Node 2 -->
+    <circle cx="376" cy="256" r="8" fill="#00ffff">
+      <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <!-- Node 3 -->
+    <circle cx="256" cy="376" r="8" fill="#00ff88">
+      <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite" begin="0.5s"/>
+    </circle>
+    <!-- Node 4 -->
+    <circle cx="136" cy="256" r="8" fill="#00ffff">
+      <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" begin="1s"/>
+    </circle>
+  </g>
+  
+  <!-- Connection Lines -->
+  <g stroke="url(#chainGradient)" stroke-width="2" opacity="0.3">
+    <line x1="256" y1="136" x2="376" y2="256"/>
+    <line x1="376" y1="256" x2="256" y2="376"/>
+    <line x1="256" y1="376" x2="136" y2="256"/>
+    <line x1="136" y1="256" x2="256" y2="136"/>
+  </g>
+  
+  <!-- Central Voting Box -->
+  <g filter="url(#glow)">
+    <!-- Main Box -->
+    <rect x="206" y="206" width="100" height="100" rx="15" fill="none" stroke="url(#voteGradient)" stroke-width="4"/>
+    
+    <!-- Inner Box -->
+    <rect x="216" y="216" width="80" height="80" rx="10" fill="rgba(0,255,136,0.1)" stroke="#00ff88" stroke-width="2"/>
+    
+    <!-- Checkmark -->
+    <path d="M 235 256 L 250 270 L 280 240" stroke="#00ffff" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <animate attributeName="stroke-dasharray" values="0,100;60,100;60,100" dur="3s" repeatCount="indefinite"/>
+      <animate attributeName="stroke-dashoffset" values="0;0;-60" dur="3s" repeatCount="indefinite"/>
+    </path>
+  </g>
+  
+  <!-- Data Streams -->
+  <g stroke="#00ff88" stroke-width="1" opacity="0.6">
+    <!-- Stream 1 -->
+    <path d="M 100 100 Q 150 150 200 200" fill="none" stroke-dasharray="5,5">
+      <animate attributeName="stroke-dashoffset" values="0;-20" dur="1s" repeatCount="indefinite"/>
+    </path>
+    <!-- Stream 2 -->
+    <path d="M 412 100 Q 362 150 312 200" fill="none" stroke-dasharray="5,5">
+      <animate attributeName="stroke-dashoffset" values="0;-20" dur="1s" repeatCount="indefinite" begin="0.3s"/>
+    </path>
+    <!-- Stream 3 -->
+    <path d="M 100 412 Q 150 362 200 312" fill="none" stroke-dasharray="5,5">
+      <animate attributeName="stroke-dashoffset" values="0;-20" dur="1s" repeatCount="indefinite" begin="0.6s"/>
+    </path>
+    <!-- Stream 4 -->
+    <path d="M 412 412 Q 362 362 312 312" fill="none" stroke-dasharray="5,5">
+      <animate attributeName="stroke-dashoffset" values="0;-20" dur="1s" repeatCount="indefinite" begin="0.9s"/>
+    </path>
+  </g>
+  
+  <!-- Corner Brackets -->
+  <g stroke="#00ffff" stroke-width="3" fill="none" opacity="0.8">
+    <!-- Top Left -->
+    <path d="M 50 80 L 50 50 L 80 50"/>
+    <!-- Top Right -->
+    <path d="M 432 50 L 462 50 L 462 80"/>
+    <!-- Bottom Left -->
+    <path d="M 80 462 L 50 462 L 50 432"/>
+    <!-- Bottom Right -->
+    <path d="M 462 432 L 462 462 L 432 462"/>
+  </g>
+  
+  <!-- Binary Code Background -->
+  <g font-family="monospace" font-size="12" fill="#00ff88" opacity="0.2">
+    <text x="80" y="150">1010</text>
+    <text x="400" y="180">1101</text>
+    <text x="90" y="350">0110</text>
+    <text x="380" y="380">1001</text>
+  </g>
+</svg>
