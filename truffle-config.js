@@ -1,67 +1,72 @@
-require('dotenv').config();
-const HDWalletProvider = require('@truffle/hdwallet-provider');
+  require('dotenv').config();
+  const HDWalletProvider = require('@truffle/hdwallet-provider');
+  console.log("MNEMONIC:", process.env.MNEMONIC?.split(' ')[0]);
+  console.log("INFURA_PROJECT_ID:", process.env.INFURA_PROJECT_ID);
 
-module.exports = {
-  networks: {
-    development: {
-      host: '127.0.0.1',
-      port: 7545,
-      network_id: '*',
-      gas: 6721975,
-      gasPrice: 20000000000,
+  module.exports = {
+    networks: {
+      development: {
+        host: '127.0.0.1',
+        port: 7545,
+        network_id: '*',
+        gas: 6721975,
+        gasPrice: 20000000000,
+      },
+      ganache: {
+        host: '127.0.0.1',
+        port: 8545,
+        network_id: '*',
+        gas: 6721975,
+        gasPrice: 20000000000,
+      },
+      sepolia: {
+        provider: () =>
+          new HDWalletProvider(
+            process.env.MNEMONIC,
+            `https://sepolia.infura.io/v3/${process.env.INFURA_PROJECT_ID}`
+          ),
+          
+        network_id: 11155111,
+        gas: 4000000,
+        gasPrice: 10000000000,
+        confirmations: 2,
+        timeoutBlocks: 200,
+        skipDryRun: true,
+        networkCheckTimeout: 100000,
+        deploymentPollingInterval: 8000,
+      },
+      goerli: {
+        provider: () =>
+          new HDWalletProvider(
+            process.env.MNEMONIC,
+            `https://goerli.infura.io/v3/${process.env.INFURA_PROJECT_ID}`
+          ),
+        network_id: 5,
+        gas: 4000000,
+        gasPrice: 10000000000,
+        confirmations: 2,
+        timeoutBlocks: 200,
+        skipDryRun: true,
+      },
     },
-    ganache: {
-      host: '127.0.0.1',
-      port: 8545,
-      network_id: '*',
-      gas: 6721975,
-      gasPrice: 20000000000,
-    },
-    sepolia: {
-      provider: () =>
-        new HDWalletProvider(
-          process.env.MNEMONIC,
-          `https://sepolia.infura.io/v3/${process.env.INFURA_PROJECT_ID}`
-        ),
-      network_id: 11155111,
-      gas: 4000000,
-      gasPrice: 10000000000,
-      confirmations: 2,
-      timeoutBlocks: 200,
-      skipDryRun: true,
-    },
-    goerli: {
-      provider: () =>
-        new HDWalletProvider(
-          process.env.MNEMONIC,
-          `https://goerli.infura.io/v3/${process.env.INFURA_PROJECT_ID}`
-        ),
-      network_id: 5,
-      gas: 4000000,
-      gasPrice: 10000000000,
-      confirmations: 2,
-      timeoutBlocks: 200,
-      skipDryRun: true,
-    },
-  },
 
-  mocha: {
-    timeout: 100000,
-  },
+    mocha: {
+      timeout: 100000,
+    },
 
-  compilers: {
-    solc: {
-      version: '0.8.19',
-      settings: {
-        optimizer: {
-          enabled: true,
-          runs: 200,
+    compilers: {
+      solc: {
+        version: '0.8.19',
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
         },
       },
     },
-  },
 
-  db: {
-    enabled: false,
-  },
-};
+    db: {
+      enabled: false,
+    },
+  };

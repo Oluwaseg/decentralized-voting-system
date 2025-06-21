@@ -13267,10 +13267,55 @@
   },
   "networks": {
     "1337": {
-      "events": {},
+      "events": {
+        "0xe83b2a43e7e82d975c8a0a6d2f045153c869e111136a34d1889ab7b598e396a3": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "candidateId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            }
+          ],
+          "name": "CandidateAdded",
+          "type": "event"
+        },
+        "0x41aeb55eef25a94e94aeac300a628610ffa8099eb2bf991b3ae640d42233467d": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "voter",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "candidateId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "candidateName",
+              "type": "string"
+            }
+          ],
+          "name": "VoteCast",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0xafD7BD6ba24b94bF45d0C09C6D87890F5ad3feBB",
-      "transactionHash": "0x4c9f37d09ad20f79bf4e7942e9db3582a01fa26a0f43c0c1f7f702e38dcfa49e"
+      "address": "0x793439F18d286595Ae78559E431fc7809E41bd03",
+      "transactionHash": "0x909b09e02ade605c0361b447104a09de4aade9eebc6244449daef284aac91899"
     },
     "5777": {
       "events": {},
@@ -13280,7 +13325,7 @@
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2025-05-27T15:15:56.693Z",
+  "updatedAt": "2025-06-21T19:33:13.056Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

@@ -35,11 +35,8 @@ export default function App() {
 
   // Supported networks data
   const supportedNetworks = [
-    { id: 1, name: 'Ethereum Mainnet', icon: '🔷', status: 'active' },
-    { id: 137, name: 'Polygon', icon: '🟣', status: 'active' },
-    { id: 80001, name: 'Mumbai Testnet', icon: '🧪', status: 'active' },
+    { id: 11155111, name: 'Sepolia Testnet', icon: '🧪', status: 'active' },
     { id: 1337, name: 'Ganache Local', icon: '⚙️', status: 'active' },
-    { id: 31337, name: 'Hardhat Local', icon: '⚙️', status: 'active' },
   ];
 
   useEffect(() => {
